@@ -1,0 +1,111 @@
+.hero-section {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  place-items: center;
+  background: linear-gradient(
+    118deg,
+    #100b0b 0%,
+    #1c0c09 31%,
+    #4a160b 52%,
+    #24100d 70%,
+    #0d0a0a 100%
+  );
+}
+
+.hero-section::before {
+  position: absolute;
+  z-index: -1;
+  background: linear-gradient(
+    0deg,
+    rgba(8, 6, 6, 0.55),
+    transparent 52%,
+    rgba(243, 64, 32, 0.08)
+  );
+  content: "";
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-marquee {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  display: flex;
+  width: max-content;
+  animation: abim-marquee 32s linear infinite;
+  will-change: transform;
+}
+
+.hero-marquee-group {
+  display: flex;
+  flex: none;
+  gap: 6rem;
+  padding-right: 6rem;
+  color: #ff4b2e;
+  font-family: "Arial Black", Impact, sans-serif;
+  font-size: 19rem;
+  font-weight: 900;
+  line-height: 0.8;
+  text-shadow: 0 0 35px rgba(247, 67, 32, 0.16);
+  white-space: nowrap;
+  opacity: 0.48;
+}
+
+.hero-portrait-anchor {
+  z-index: 1;
+  display: flex;
+  height: min(80svh, 50rem);
+  width: min(60svh, 86vw, 37.5rem);
+  align-items: center;
+  justify-content: center;
+  transform: translateY(2rem);
+}
+
+.hero-portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 22px 32px rgba(0, 0, 0, 0.34));
+  mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+}
+
+@keyframes abim-marquee {
+  from {
+    transform: translate3d(0, -50%, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-marquee-group {
+    font-size: 13rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-marquee-group {
+    gap: 3rem;
+    padding-right: 3rem;
+    font-size: 7.5rem;
+  }
+
+  .hero-portrait-anchor {
+    height: min(74svh, 42rem);
+    width: min(55.5svh, 90vw);
+    transform: translateY(1.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee {
+    animation: none;
+  }
+}

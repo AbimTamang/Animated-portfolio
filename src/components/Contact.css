@@ -1,0 +1,634 @@
+.ct {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(6rem, 12vw, 9rem) 2rem clamp(5rem, 9vw, 7rem);
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(255, 75, 46, 0.12), transparent 50%),
+    radial-gradient(ellipse at 90% 90%, rgba(255, 75, 46, 0.08), transparent 50%),
+    #100b0a;
+}
+
+/* Outlined "Say hello" marquee behind everything */
+.ct-marquee {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  translate: 0 -50%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ct-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ct-marquee 40s linear infinite;
+}
+
+.ct-marquee span {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding-right: 3rem;
+  color: transparent;
+  font-size: clamp(6rem, 18vw, 16rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  -webkit-text-stroke: 1px rgba(255, 75, 46, 0.07);
+}
+
+.ct-marquee i {
+  color: rgba(255, 75, 46, 0.08);
+  font-size: 0.4em;
+  font-style: normal;
+  -webkit-text-stroke: 0;
+}
+
+.ct-inner {
+  width: min(100%, 76rem);
+  margin: 0 auto;
+}
+
+.ct-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.ct-kicker {
+  color: var(--ember);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ct-status {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.78rem;
+}
+
+.ct-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #3ddc84;
+  animation: ct-pulse 1.8s ease-out infinite;
+}
+
+.ct-clock {
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Heading */
+.ct-heading {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  color: #fff;
+  font-size: clamp(2.8rem, 8.5vw, 7.5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.ct-line {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.25em;
+}
+
+.ct-word {
+  display: inline-flex;
+}
+
+/* Extra room (cancelled by negative margin) so descenders and italic overhang aren't clipped */
+.ct-char-mask {
+  display: inline-block;
+  overflow: hidden;
+  margin: -0.1em -0.06em -0.24em;
+  padding: 0.1em 0.06em 0.24em;
+}
+
+.ct-char {
+  display: inline-block;
+}
+
+.ct-char--accent {
+  color: var(--ember);
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Big email + copy */
+.ct-email-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ct-email {
+  position: relative;
+  display: inline-flex;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1.4rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.ct-email::after {
+  position: absolute;
+  bottom: -0.15em;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ember);
+  transform: scaleX(0.15);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  content: "";
+}
+
+.ct-email:hover::after,
+.ct-email:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.ct-email:hover,
+.ct-email:focus-visible {
+  color: #fff;
+  outline: none;
+}
+
+.ct-email-char {
+  display: inline-block;
+  white-space: pre;
+}
+
+.ct-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.ct-copy svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.ct-copy:hover {
+  border-color: var(--ember);
+  color: #fff;
+}
+
+.ct-copy.is-copied {
+  border-color: #3ddc84;
+  background: rgba(61, 220, 132, 0.12);
+  color: #3ddc84;
+}
+
+.ct-copy:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+}
+
+/* Form + side panel */
+.ct-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.ct-panel {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.75rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ct-panel h3 {
+  margin: 0 0 1.5rem;
+  color: #fff;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Project type pills */
+.ct-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  border: 0;
+}
+
+.ct-types legend {
+  margin-bottom: 0.75rem;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.78rem;
+}
+
+.ct-type {
+  position: relative;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.ct-type input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ct-type:hover {
+  border-color: rgba(255, 75, 46, 0.6);
+  color: #fff;
+}
+
+.ct-type.is-active {
+  border-color: var(--ember);
+  background: var(--ember);
+  color: #fff;
+}
+
+.ct-type:has(input:focus-visible) {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
+}
+
+/* Floating-label fields */
+.ct-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1rem;
+}
+
+.ct-field {
+  position: relative;
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+.ct-field input,
+.ct-field textarea {
+  width: 100%;
+  padding: 1.35rem 0 0.6rem;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.ct-field textarea {
+  min-height: 7rem;
+}
+
+.ct-field span {
+  position: absolute;
+  top: 1.3rem;
+  left: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 1rem;
+  transform-origin: left top;
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.3s ease;
+  pointer-events: none;
+}
+
+.ct-field input:focus,
+.ct-field textarea:focus {
+  border-color: var(--ember);
+}
+
+.ct-field input:focus + span,
+.ct-field input:not(:placeholder-shown) + span,
+.ct-field textarea:focus + span,
+.ct-field textarea:not(:placeholder-shown) + span {
+  color: var(--ember);
+  transform: translateY(-1.2rem) scale(0.75);
+}
+
+/* Animated underline under the focused field */
+.ct-field::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  content: "";
+}
+
+.ct-field:focus-within::after {
+  transform: scaleX(1);
+}
+
+.ct-field:has(textarea)::after {
+  bottom: 6px;
+}
+
+.ct-submit-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.ct-submit-row small {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.78rem;
+}
+
+.ct-submit {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.45rem 0.45rem 0.45rem 1.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ember);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 12px 40px -12px rgba(255, 75, 46, 0.7);
+  isolation: isolate;
+}
+
+.ct-submit::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: #fff;
+  transform: translateY(101%);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  content: "";
+}
+
+.ct-submit:hover::before,
+.ct-submit:focus-visible::before {
+  transform: translateY(0);
+}
+
+.ct-submit > span:first-child {
+  transition: color 0.35s ease;
+}
+
+.ct-submit:hover > span:first-child,
+.ct-submit:focus-visible > span:first-child {
+  color: #100b0a;
+}
+
+.ct-submit-icon {
+  display: grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  place-items: center;
+  border-radius: 50%;
+  background: #100b0a;
+  transition: rotate 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ct-submit:hover .ct-submit-icon {
+  rotate: -45deg;
+}
+
+.ct-submit:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 4px;
+}
+
+/* Socials */
+.ct-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.ct-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.ct-social {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.1rem;
+  color: #fff;
+  text-decoration: none;
+  isolation: isolate;
+  transition: border-color 0.4s ease;
+}
+
+/* Ember fill sweeps in from the left */
+.ct-social::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, var(--ember), #ff7a5c);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  content: "";
+}
+
+.ct-social:hover::before,
+.ct-social:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.ct-social:hover,
+.ct-social:focus-visible {
+  border-color: var(--ember);
+  outline: none;
+}
+
+.ct-social-icon {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  flex: none;
+  place-items: center;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.06);
+  transition: background-color 0.4s ease;
+}
+
+.ct-social:hover .ct-social-icon {
+  background: rgba(16, 11, 10, 0.25);
+}
+
+.ct-social-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.ct-social-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.ct-social-text small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  transition: color 0.4s ease;
+}
+
+.ct-social:hover .ct-social-text small {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ct-social-arrow {
+  color: var(--ember);
+  font-size: 1.2rem;
+  transition:
+    color 0.4s ease,
+    translate 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ct-social:hover .ct-social-arrow {
+  color: #fff;
+  translate: 3px -3px;
+}
+
+.ct-location {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: auto;
+  padding: 1.25rem;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 1.1rem;
+}
+
+.ct-location-label {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ct-location strong {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.ct-location-meta {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+}
+
+@keyframes ct-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ct-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(61, 220, 132, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 9px rgba(61, 220, 132, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .ct {
+    padding-inline: 1rem;
+  }
+
+  .ct-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .ct-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .ct-status {
+    border-radius: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ct-marquee-track,
+  .ct-dot {
+    animation: none;
+  }
+}

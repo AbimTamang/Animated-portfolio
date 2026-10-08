@@ -1,0 +1,666 @@
+.cine {
+  position: relative;
+  background: #100b0a;
+}
+
+.cine-stage {
+  position: relative;
+  overflow: hidden;
+  height: 100svh;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255, 75, 46, 0.12), transparent 60%),
+    #100b0a;
+}
+
+/* Opening title that the camera flies through */
+.cine-title {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(3.5rem, 13vw, 12rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.cine-title em {
+  margin-left: 0.2em;
+  color: var(--ember);
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.cine-intro-meta {
+  position: absolute;
+  z-index: 5;
+  right: 2rem;
+  bottom: 2rem;
+  left: 2rem;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* The "screen" that grows to full viewport */
+.cine-frame {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  clip-path: inset(24% 27% 24% 27% round 1.5rem);
+  will-change: clip-path;
+}
+
+.cine-shot,
+.cine-cut {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #0b0706;
+}
+
+/* Ambient backdrop: the screenshot, blurred and dimmed */
+.cine-bg {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  object-fit: cover;
+  filter: blur(36px) saturate(1.3) brightness(0.32);
+  will-change: transform;
+}
+
+.cine-bg--blank {
+  background:
+    radial-gradient(circle at 70% 40%, rgba(255, 75, 46, 0.45), transparent 55%),
+    #140c0a;
+  filter: blur(20px);
+}
+
+.cine-shade {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+}
+
+/* Dark side for the caption, so text always sits on a calm background */
+.cine-shot::after,
+.cine-cut::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(10, 6, 5, 0.92) 0%, rgba(10, 6, 5, 0.6) 35%, transparent 60%),
+    linear-gradient(to top, rgba(10, 6, 5, 0.7) 0%, transparent 35%);
+  content: "";
+  pointer-events: none;
+}
+
+/* The sharp screenshot, framed as a browser window */
+.cine-screen-wrap {
+  position: absolute;
+  z-index: 1;
+  inset: 9vh 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 clamp(1rem, 5vw, 4.5rem);
+  perspective: 1400px;
+  pointer-events: none;
+}
+
+.cine-screen {
+  width: min(50vw, 60rem);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.9rem;
+  background: #161110;
+  box-shadow:
+    0 50px 120px -30px rgba(0, 0, 0, 0.9),
+    0 0 90px -20px rgba(255, 75, 46, 0.35);
+  transform: perspective(1400px) rotateY(-8deg);
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.cine-screen-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.1rem;
+  padding: 0 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #1d1716;
+}
+
+.cine-screen-bar i {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.cine-screen-bar i:nth-child(2) {
+  background: #febc2e;
+}
+
+.cine-screen-bar i:nth-child(3) {
+  background: #28c840;
+}
+
+.cine-screen-bar span {
+  flex: 1;
+  max-width: 18rem;
+  margin: 0 auto;
+  padding: 0.2rem 0.75rem;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.55);
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.7rem;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cine-screen img,
+.cine-screen-placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Title card for projects without a screenshot */
+.cine-screen-placeholder {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(255, 75, 46, 0.35), transparent 55%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 60px),
+    #140c0a;
+  color: transparent;
+  font-size: clamp(3rem, 9vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  -webkit-text-stroke: 1px rgba(255, 75, 46, 0.6);
+}
+
+/* Vignette + grain sit over every scene (frame and montage) but under the bars */
+.cine-vignette {
+  position: absolute;
+  z-index: 8;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.6) 100%);
+  pointer-events: none;
+}
+
+/* Animated film grain */
+.cine-grain {
+  position: absolute;
+  z-index: 8;
+  inset: -50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  animation: cine-grain 0.9s steps(6) infinite;
+  pointer-events: none;
+}
+
+/* Captions */
+.cine-captions {
+  position: absolute;
+  z-index: 6;
+  inset: 9vh 0;
+  pointer-events: none;
+}
+
+.cine-caption,
+.cine-cut-body {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: clamp(1rem, 5vw, 4.5rem);
+  width: min(34rem, 36vw);
+  translate: 0 -50%;
+  pointer-events: auto;
+}
+
+.cine-kicker {
+  display: block;
+  margin-bottom: 0.9rem;
+  color: var(--ember);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.cine-caption h3,
+.cine-cut-body h3 {
+  margin: 0 0 1rem;
+  color: #fff;
+  font-size: clamp(2.2rem, 4.6vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.cine-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  /* extra room so descenders (p, y, g) aren't clipped; negative margins keep the layout */
+  margin: -0.1em 0.16em -0.24em -0.06em;
+  padding: 0.1em 0.06em 0.24em;
+  vertical-align: top;
+}
+
+.cine-word {
+  display: inline-block;
+}
+
+.cine-caption p,
+.cine-cut-body p {
+  margin: 0 0 1.25rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+  line-height: 1.65;
+}
+
+.cine-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.cine-tags li {
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+}
+
+.cine-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cine-btn {
+  padding: 0.7rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.cine-btn:hover,
+.cine-btn:focus-visible {
+  border-color: #fff;
+  background: #fff;
+  color: #100b0a;
+  transform: translateY(-2px);
+}
+
+.cine-btn--solid {
+  border-color: var(--ember);
+  background: var(--ember);
+}
+
+.cine-btn:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+}
+
+/* Featured "in production" badge */
+.cine-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(255, 75, 46, 0.55);
+  border-radius: 999px;
+  background: rgba(255, 75, 46, 0.16);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cine-badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 0 0 rgba(255, 75, 46, 0.7);
+  animation: cine-pulse 1.6s ease-out infinite;
+}
+
+/* Montage of clones — fast cuts layered over the film */
+.cine-montage {
+  position: absolute;
+  z-index: 7;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cine-montage-title {
+  position: absolute;
+  z-index: 30;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-shadow: 0 0 40px rgba(255, 75, 46, 0.6);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cine-cut {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: auto;
+}
+
+.cine-flash {
+  position: absolute;
+  z-index: 40;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Letterbox bars */
+.cine-bar {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  left: 0;
+  height: 0;
+  background: #100b0a;
+}
+
+.cine-bar--top {
+  top: 0;
+}
+
+.cine-bar--bottom {
+  bottom: 0;
+}
+
+/* Camera HUD */
+.cine-hud {
+  position: absolute;
+  z-index: 11;
+  inset: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cine-hud-tl,
+.cine-hud-tr,
+.cine-hud-bl {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.cine-hud-tl {
+  top: calc(4.5vh - 0.5em);
+  left: clamp(1rem, 5vw, 4.5rem);
+}
+
+.cine-hud-tr {
+  top: calc(4.5vh - 0.5em);
+  right: clamp(1rem, 5vw, 4.5rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.cine-hud-bl {
+  bottom: calc(4.5vh - 0.5em);
+  left: clamp(1rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+}
+
+.cine-rec {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 12px var(--ember);
+  animation: cine-blink 1.2s steps(1) infinite;
+}
+
+.cine-scene-mask {
+  display: inline-flex;
+  overflow: hidden;
+  height: 1.2em;
+  flex-direction: column;
+  color: var(--ember);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cine-hud-total {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.cine-progress {
+  position: absolute;
+  right: clamp(1rem, 5vw, 4.5rem);
+  bottom: calc(4.5vh - 1px);
+  width: min(30vw, 14rem);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.cine-progress span {
+  display: block;
+  height: 100%;
+  background: var(--ember);
+  transform-origin: left;
+}
+
+/* Final card after the bars close */
+.cine-fin {
+  position: absolute;
+  z-index: 12;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-style: italic;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cine-fin span {
+  color: var(--ember);
+}
+
+@keyframes cine-grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-5%, 3%); }
+  40% { transform: translate(4%, -6%); }
+  60% { transform: translate(-3%, 7%); }
+  80% { transform: translate(6%, 2%); }
+  100% { transform: translate(-2%, -4%); }
+}
+
+@keyframes cine-pulse {
+  to { box-shadow: 0 0 0 10px rgba(255, 75, 46, 0); }
+}
+
+@keyframes cine-blink {
+  50% { opacity: 0; }
+}
+
+/* Tablet and phone: screenshot on top, caption below */
+@media (max-width: 900px) {
+  .cine-screen-wrap {
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 4vh;
+  }
+
+  .cine-screen {
+    width: min(88vw, 36rem);
+  }
+
+  .cine-shot::after,
+  .cine-cut::after {
+    background: linear-gradient(to top, rgba(10, 6, 5, 0.96) 0%, rgba(10, 6, 5, 0.85) 45%, transparent 75%);
+  }
+
+  .cine-caption,
+  .cine-cut-body {
+    top: auto;
+    bottom: 1.5rem;
+    width: calc(100% - 2rem);
+    translate: none;
+  }
+
+  /* cuts span the full stage, so clear the bottom letterbox bar */
+  .cine-cut-body {
+    bottom: calc(9vh + 1.5rem);
+  }
+
+  .cine-caption h3,
+  .cine-cut-body h3 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .cine-caption p,
+  .cine-cut-body p {
+    margin-bottom: 0.9rem;
+    font-size: 0.88rem;
+  }
+
+  .cine-tags {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .cine-intro-meta {
+    right: 1rem;
+    left: 1rem;
+    font-size: 0.65rem;
+  }
+
+  .cine-progress {
+    display: none;
+  }
+
+  .cine-tags li:nth-child(n + 4) {
+    display: none;
+  }
+}
+
+/* No pinning or zooming: show the projects as a simple stacked list */
+@media (prefers-reduced-motion: reduce) {
+  .cine-stage {
+    height: auto;
+    padding: 6rem 1rem;
+  }
+
+  .cine-title {
+    position: static;
+    margin-bottom: 3rem;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+  }
+
+  .cine-intro-meta,
+  .cine-bar,
+  .cine-hud,
+  .cine-fin,
+  .cine-grain,
+  .cine-vignette,
+  .cine-frame,
+  .cine-flash,
+  .cine-cut .cine-bg,
+  .cine-cut .cine-shade,
+  .cine-cut .cine-screen-wrap,
+  .cine-cut::after {
+    display: none;
+  }
+
+  .cine-captions,
+  .cine-montage {
+    position: static;
+    display: grid;
+    gap: 3rem;
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  .cine-montage {
+    margin-top: 3rem;
+  }
+
+  .cine-caption,
+  .cine-cut,
+  .cine-cut-body,
+  .cine-montage-title {
+    position: static;
+    width: auto;
+    translate: none;
+    opacity: 1;
+    visibility: visible;
+    background: none;
+  }
+
+  .cine-montage-title {
+    display: block;
+    font-size: 1.5rem;
+  }
+
+  .cine-badge-dot {
+    animation: none;
+  }
+}

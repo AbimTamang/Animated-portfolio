@@ -1,0 +1,344 @@
+.jr {
+  position: relative;
+  padding: clamp(6rem, 12vw, 9rem) 2rem;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(255, 75, 46, 0.07), transparent 60%),
+    #100b0a;
+}
+
+.jr-inner {
+  width: min(100%, 72rem);
+  margin: 0 auto;
+}
+
+/* Timeline: centre line on desktop, cards alternate sides */
+.jr-track {
+  position: relative;
+}
+
+.jr-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.jr-line-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #ffb199, var(--ember) 40%, var(--ember-deep));
+  transform-origin: top;
+}
+
+.jr-head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin: -0.35rem 0 0 -0.35rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 0 4px rgba(255, 75, 46, 0.35),
+    0 0 24px 6px rgba(255, 75, 46, 0.7);
+}
+
+.jr-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vw, 5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jr-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 5rem 1fr;
+  align-items: start;
+}
+
+.jr-node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border: 1px solid rgba(255, 75, 46, 0.5);
+  border-radius: 50%;
+  background: #1a0f0c;
+  color: var(--ember);
+  box-shadow: 0 0 0 6px #100b0a;
+}
+
+.jr-node svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.is-current .jr-node {
+  border-color: var(--ember);
+  background: var(--ember);
+  color: #fff;
+  box-shadow:
+    0 0 0 6px #100b0a,
+    0 0 30px rgba(255, 75, 46, 0.7);
+}
+
+.jr-when {
+  display: flex;
+  flex-direction: column;
+  grid-row: 1;
+  gap: 0.3rem;
+  padding-top: 0.6rem;
+  color: #fff;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.jr-when small {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.jr-live {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #3ddc84;
+  box-shadow: 0 0 0 0 rgba(61, 220, 132, 0.6);
+  animation: jr-pulse 1.8s ease-out infinite;
+}
+
+.jr-card {
+  position: relative;
+  overflow: hidden;
+  grid-row: 1;
+  padding: clamp(1.4rem, 2.5vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012));
+  will-change: transform;
+  transition: border-color 0.4s ease;
+}
+
+.jr-card:hover {
+  border-color: rgba(255, 75, 46, 0.4);
+}
+
+.is-current .jr-card {
+  border-color: rgba(255, 75, 46, 0.35);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 75, 46, 0.16), transparent 50%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+}
+
+/* Cursor spotlight (position set from JS) */
+.jr-card-spot {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 75, 46, 0.12), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.jr-card:hover .jr-card-spot {
+  opacity: 1;
+}
+
+/* Odd items: date left, card right. Even items: card left, date right */
+.jr-item:nth-child(odd) .jr-when {
+  grid-column: 1;
+  align-items: flex-end;
+  padding-right: 1rem;
+  text-align: right;
+}
+
+.jr-item:nth-child(odd) .jr-card {
+  grid-column: 3;
+}
+
+.jr-item:nth-child(even) .jr-when {
+  grid-column: 3;
+  align-items: flex-start;
+  padding-left: 1rem;
+}
+
+.jr-item:nth-child(even) .jr-card {
+  grid-column: 1;
+}
+
+.jr-card h3 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.jr-org {
+  margin: 0.4rem 0 0;
+  color: var(--ember);
+  font-weight: 600;
+}
+
+.jr-note {
+  margin: 0.25rem 0 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.88rem;
+}
+
+.jr-desc {
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.65;
+}
+
+.jr-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jr-tags li {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+}
+
+.jr-tags--small {
+  margin: 0;
+}
+
+.jr-tags--small li {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+}
+
+/* Final year project highlight inside the education card */
+.jr-project {
+  position: relative;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border: 1px dashed rgba(255, 75, 46, 0.4);
+  border-radius: 1rem;
+  background: rgba(255, 75, 46, 0.06);
+}
+
+.jr-project-label {
+  color: var(--ember);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.jr-project p {
+  margin: 0.5rem 0 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.jr-project-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.jr-project-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.jr-project-links a {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--ember);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.jr-project-links a:hover,
+.jr-project-links a:focus-visible {
+  background: #fff;
+  color: #100b0a;
+}
+
+@keyframes jr-pulse {
+  to {
+    box-shadow: 0 0 0 10px rgba(61, 220, 132, 0);
+  }
+}
+
+/* Phone/tablet: line on the left, everything stacks to the right of it */
+@media (max-width: 800px) {
+  .jr {
+    padding-inline: 1rem;
+  }
+
+  .jr-line,
+  .jr-head {
+    left: 1.5rem;
+  }
+
+  .jr-item {
+    grid-template-columns: 3rem 1fr;
+    column-gap: 1rem;
+    row-gap: 0.75rem;
+  }
+
+  .jr-node {
+    grid-column: 1;
+  }
+
+  .jr-item:nth-child(n) .jr-when {
+    grid-column: 2;
+    grid-row: 1;
+    align-items: flex-start;
+    padding: 0.6rem 0 0;
+    text-align: left;
+  }
+
+  .jr-item:nth-child(n) .jr-card {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jr-live {
+    animation: none;
+  }
+
+  .jr-head {
+    display: none;
+  }
+}

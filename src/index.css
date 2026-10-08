@@ -1,3 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	color-scheme: dark;
+	--ember: #ff4b2e;
+	--ember-deep: #d9361d;
+	--site-surface: #100b0a;
+	--site-text: #f5eeea;
+}
+
+html {
+	background: var(--site-surface);
+}
+
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+html.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+
+html.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+body {
+	min-width: 320px;
+	min-height: 100vh;
+	margin: 0;
+	background: linear-gradient(125deg, #100b0a 0%, #170c0a 54%, #100b0a 100%);
+	color: var(--site-text);
+}
+
+/* Navbar slides away while the Projects film is pinned.
+   !important because GSAP's entrance tween writes an inline `translate: none`. */
+nav.fixed {
+	transition: translate 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+html.cine-playing nav.fixed {
+	translate: 0 -110% !important;
+	pointer-events: none;
+}
+
+::selection {
+	background: var(--ember);
+	color: #fff8f4;
+}
+
+.bg-black {
+	background-color: #100b0a;
+	background-image: linear-gradient(
+		120deg,
+		rgba(92, 26, 13, 0.17),
+		transparent 54%,
+		rgba(68, 19, 12, 0.12)
+	);
+}
+
+[class~="bg-black/80"] {
+	background-color: rgba(16, 11, 10, 0.88);
+}
+
+.text-purple-500,
+.text-purple-400 {
+	color: var(--ember);
+}
+
+.bg-purple-500 {
+	background-color: var(--ember);
+}
+
+[class~="bg-purple-500/20"] {
+	background-color: rgba(255, 75, 46, 0.18);
+}
+
+.border-purple-500 {
+	border-color: var(--ember);
+}
+
+[class~="hover:bg-purple-500"]:hover,
+[class~="hover:bg-purple-600"]:hover {
+	background-color: var(--ember-deep);
+}

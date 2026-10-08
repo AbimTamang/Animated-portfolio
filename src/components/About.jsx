@@ -73,7 +73,7 @@ export default function About() {
           {/* Image */}
           <div ref={imageRef} className="md:col-span-1">
             <img
-              src="/my-photo.jpg"
+              src="/myself/Abim.png"
               alt="Abim Tamang"
               className="w-full rounded-2xl object-cover"
             />

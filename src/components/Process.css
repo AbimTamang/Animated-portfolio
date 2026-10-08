@@ -1,0 +1,302 @@
+.proc {
+  position: relative;
+  overflow: hidden;
+  height: 100svh;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(255, 75, 46, 0.1), transparent 55%),
+    #100b0a;
+}
+
+.proc-track {
+  position: relative;
+  display: flex;
+  width: max-content;
+  height: 100%;
+  will-change: transform;
+}
+
+.proc-panel {
+  position: relative;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Intro panel */
+.proc-intro {
+  width: max(60vw, 24rem);
+  padding: 0 clamp(1rem, 6vw, 6rem);
+}
+
+.proc-mask {
+  display: block;
+  overflow: hidden;
+  margin-bottom: -0.24em;
+  padding: 0 0.06em 0.24em 0;
+}
+
+.proc-reveal {
+  display: inline-block;
+}
+
+.proc-kicker {
+  margin-bottom: 1.5rem;
+  color: var(--ember);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.proc-intro h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(3rem, 9vw, 8.5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.proc-intro em {
+  color: var(--ember);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.proc-intro p {
+  margin: 2rem 0 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Horizontal timeline line running through every step */
+.proc-line {
+  position: absolute;
+  top: 42%;
+  right: 0;
+  left: max(60vw, 24rem);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 75, 46, 0.6), rgba(255, 255, 255, 0.12) 30%);
+}
+
+/* Steps */
+.proc-step {
+  width: max(42vw, 24rem);
+  justify-content: flex-start;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+
+.proc-num {
+  position: absolute;
+  top: calc(42% - clamp(7rem, 16vw, 14rem));
+  left: clamp(1rem, 3vw, 3rem);
+  color: transparent;
+  font-size: clamp(8rem, 18vw, 16rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  -webkit-text-stroke: 1px rgba(255, 75, 46, 0.35);
+  user-select: none;
+}
+
+.proc-dot {
+  position: absolute;
+  top: calc(42% - 0.55rem);
+  left: clamp(1.5rem, 4vw, 4rem);
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 3px solid #100b0a;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 0 1px var(--ember), 0 0 24px rgba(255, 75, 46, 0.7);
+}
+
+.proc-step-body {
+  margin-top: calc(42vh + 2.5rem);
+  max-width: 26rem;
+}
+
+.proc-step-label {
+  color: rgba(255, 255, 255, 0.4);
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.proc-step h3 {
+  margin: 0.6rem 0 1rem;
+  color: #fff;
+  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.proc-step p {
+  margin: 0 0 1.5rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.proc-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.proc-points li {
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.78rem;
+}
+
+.proc-points li::before {
+  margin-right: 0.45rem;
+  color: var(--ember);
+  content: "✓";
+}
+
+/* Closing panel with a call to action */
+.proc-outro {
+  width: max(45vw, 24rem);
+  padding: 0 clamp(1.5rem, 6vw, 6rem) 0 clamp(1.5rem, 4vw, 4rem);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  background: radial-gradient(circle at 30% 50%, rgba(255, 75, 46, 0.14), transparent 60%);
+}
+
+.proc-outro-kicker {
+  margin: 0 0 1rem;
+  color: var(--ember);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.proc-outro h3 {
+  margin: 0 0 2.5rem;
+  color: #fff;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.proc-outro em {
+  color: var(--ember);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.proc-outro-cta {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.6rem;
+  border-radius: 999px;
+  background: var(--ember);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 12px 40px -12px rgba(255, 75, 46, 0.7);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.proc-outro-cta span {
+  transition: translate 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.proc-outro-cta:hover,
+.proc-outro-cta:focus-visible {
+  background: #fff;
+  color: #100b0a;
+}
+
+.proc-outro-cta:hover span {
+  translate: 0.35rem 0;
+}
+
+.proc-outro-cta:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 4px;
+}
+
+/* Scroll progress along the bottom */
+.proc-progress {
+  position: absolute;
+  right: clamp(1rem, 6vw, 6rem);
+  bottom: 2.5rem;
+  left: clamp(1rem, 6vw, 6rem);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.proc-progress span {
+  display: block;
+  height: 100%;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+@media (max-width: 700px) {
+  .proc-step {
+    width: 86vw;
+  }
+
+  .proc-step-body {
+    margin-top: calc(42vh + 2rem);
+  }
+}
+
+/* No horizontal scroll: stack the steps */
+@media (prefers-reduced-motion: reduce) {
+  .proc {
+    height: auto;
+    padding: 6rem 1rem;
+  }
+
+  .proc-track {
+    width: auto;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .proc-panel,
+  .proc-intro,
+  .proc-step,
+  .proc-outro {
+    width: auto;
+    height: auto;
+  }
+
+  .proc-line,
+  .proc-dot,
+  .proc-progress {
+    display: none;
+  }
+
+  .proc-num {
+    position: static;
+    font-size: 5rem;
+  }
+
+  .proc-step-body {
+    margin-top: 0;
+  }
+}
