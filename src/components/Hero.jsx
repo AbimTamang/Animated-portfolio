@@ -14,9 +14,13 @@ export default function Hero() {
       </div>
       <div className="hero-portrait-anchor">
         <img
-          src="/myself/Abim.png"
+          src="/myself/Abim.webp"
           alt="Abim Tamang"
           className="hero-portrait"
+          width="1087"
+          height="1446"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
     </section>

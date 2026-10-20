@@ -117,6 +117,7 @@
 
 .proc-step-body {
   margin-top: calc(42vh + 2.5rem);
+  margin-top: calc(42svh + 2.5rem);
   max-width: 26rem;
 }
 
@@ -255,12 +256,50 @@
 }
 
 @media (max-width: 700px) {
+  .proc-intro {
+    width: 100vw;
+    padding: 0 1.25rem;
+  }
+
+  .proc-line {
+    left: 100vw;
+  }
+
   .proc-step {
     width: 86vw;
+    padding: 0 1.25rem;
+  }
+
+  .proc-num {
+    top: calc(42% - 6.5rem);
+    font-size: 7.5rem;
+  }
+
+  .proc-dot {
+    left: 1.25rem;
   }
 
   .proc-step-body {
-    margin-top: calc(42vh + 2rem);
+    margin-top: calc(42vh + 1.75rem);
+    margin-top: calc(42svh + 1.75rem);
+  }
+
+  .proc-step h3 {
+    font-size: 2rem;
+  }
+
+  .proc-step p {
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
+  }
+
+  .proc-outro {
+    width: 100vw;
+    padding: 0 1.25rem;
+  }
+
+  .proc-progress {
+    bottom: 1.25rem;
   }
 }
 

@@ -11,7 +11,7 @@ const projects = [
   {
     title: "Next Minds Infosys",
     desc: "Website for Next Minds Infosys, an IT training institute in Nepal: course catalog, enrollments and content management. A Next.js + NestJS monorepo on PostgreSQL.",
-    image: "/projects/nextminds.png",
+    image: "/projects/nextminds.webp",
     tags: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "Docker"],
     github: null,
     live: "https://nextmindsinfosys.com",
@@ -20,7 +20,7 @@ const projects = [
   {
     title: "Modern Portfolio",
     desc: "My first professional portfolio project built with HTML, CSS, and Vite.",
-    image: "/project2.png",
+    image: "/project2.webp",
     tags: ["React", "tailwindCSS", "JavaScript", "Gsap"],
     github: "https://github.com/AbimTamang",
     live: "#",
@@ -28,7 +28,7 @@ const projects = [
   {
     title: "Expense Tracker",
     desc: "A full-stack application to track daily expenses and view spending patterns.",
-    image: "/project3.png",
+    image: "/project3.webp",
     tags: ["React", "Express", "Node.js"],
     github: "https://github.com/AbimTamang/ExpenseTracker",
     live: "#",
@@ -36,7 +36,7 @@ const projects = [
   {
     title: "Notification Todo App",
     desc: "A smart MERN-stack task manager that sends real-time alerts when tasks are due.",
-    image: "/project1.png",
+    image: "/project1.webp",
     tags: ["React", "Node.js", "Express", "MongoDB"],
     github: "https://github.com/AbimTamang/Todo",
     live: "#",
@@ -48,7 +48,7 @@ const clones = [
   {
     title: "Arola",
     desc: "Immersive drinks-brand site with 3D and scroll storytelling.",
-    image: "/projects/arola.png",
+    image: "/projects/arola.webp",
     tags: ["Next.js", "Three.js", "GSAP"],
     github: "https://github.com/AbimTamang/Arola",
     live: "https://arola-rho.vercel.app",
@@ -56,7 +56,7 @@ const clones = [
   {
     title: "Supaste",
     desc: "Landing page for a macOS clipboard app.",
-    image: "/projects/supaste.png",
+    image: "/projects/supaste.webp",
     tags: ["Next.js", "Framer Motion", "GSAP"],
     github: "https://github.com/AbimTamang/Supaste",
     live: "https://supaste-lyart.vercel.app",
@@ -170,6 +170,7 @@ export default function Projects() {
           start: "top top",
           end: () => `+=${window.innerHeight * (projects.length * 1.6 + clones.length * 0.8 + 2)}`,
           pin: q(".cine-stage")[0],
+          anticipatePin: 1,
           scrub: 1,
           invalidateOnRefresh: true,
           // Navbar steps aside while the film plays

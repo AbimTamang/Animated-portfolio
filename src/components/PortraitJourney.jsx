@@ -8,7 +8,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function PortraitJourney({ children }) {
   const storyRef = useRef(null);
-  const imageRef = useRef(null);
 
   useGSAP(
     () => {

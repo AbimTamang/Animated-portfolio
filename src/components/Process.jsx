@@ -49,6 +49,7 @@ export default function Process() {
           start: "top top",
           end: () => `+=${distance()}`,
           pin: true,
+          anticipatePin: 1,
           scrub: 1,
           invalidateOnRefresh: true,
         },

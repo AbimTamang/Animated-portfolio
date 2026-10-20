@@ -12,6 +12,26 @@
 
 html {
 	background: var(--site-surface);
+	-webkit-text-size-adjust: 100%;
+}
+
+/* Off-screen entrance animations (cards sliding in from the side) must never
+   widen the page on phones. `clip` doesn't create a scroll container, so
+   GSAP pinning keeps working. */
+html,
+body {
+	overflow-x: clip;
+}
+
+/* Scroll is locked while the intro loader plays */
+html.is-loading,
+html.is-loading body {
+	overflow: hidden;
+	touch-action: none;
+}
+
+img {
+	max-width: 100%;
 }
 
 html.lenis,

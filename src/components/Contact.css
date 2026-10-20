@@ -158,6 +158,8 @@
   font-size: clamp(1.4rem, 4vw, 3rem);
   font-weight: 600;
   letter-spacing: -0.03em;
+  flex-wrap: wrap;
+  max-width: 100%;
   text-decoration: none;
   overflow-wrap: anywhere;
 }

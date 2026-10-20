@@ -587,6 +587,66 @@
 }
 
 @media (max-width: 700px) {
+  .cine-title {
+    font-size: clamp(2.25rem, 11vw, 4rem);
+  }
+
+  .cine-screen-wrap {
+    padding-top: 2vh;
+  }
+
+  .cine-screen {
+    width: min(84vw, 30rem);
+  }
+
+  .cine-screen-bar {
+    height: 1.6rem;
+  }
+
+  .cine-caption,
+  .cine-cut-body {
+    bottom: 1rem;
+  }
+
+  .cine-cut-body {
+    bottom: calc(9vh + 1rem);
+  }
+
+  .cine-badge {
+    margin-bottom: 0.6rem;
+    font-size: 0.6rem;
+  }
+
+  .cine-kicker {
+    margin-bottom: 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .cine-caption h3,
+  .cine-cut-body h3 {
+    margin-bottom: 0.6rem;
+    font-size: clamp(1.7rem, 8vw, 2.4rem);
+  }
+
+  /* keep the caption short so it never covers the screenshot */
+  .cine-caption p,
+  .cine-cut-body p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .cine-tags li {
+    padding: 0.25rem 0.65rem;
+    font-size: 0.68rem;
+  }
+
+  .cine-btn {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.82rem;
+  }
+
   .cine-intro-meta {
     right: 1rem;
     left: 1rem;
@@ -598,6 +658,19 @@
   }
 
   .cine-tags li:nth-child(n + 4) {
+    display: none;
+  }
+}
+
+/* Short phones: drop the description and tags, keep title + links */
+@media (max-width: 700px) and (max-height: 720px) and (prefers-reduced-motion: no-preference) {
+  .cine-caption p,
+  .cine-cut-body p,
+  .cine-tags {
+    display: none;
+  }
+
+  .cine-badge {
     display: none;
   }
 }

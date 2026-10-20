@@ -392,7 +392,14 @@ export default function Intro() {
 
           <figure className="bento-card bento-photo bento-tilt">
             <div className="about-photo-glow" aria-hidden="true" />
-            <img src="/myself/Abim.png" alt="Abim Tamang" className="about-photo-img" />
+            <img
+              src="/myself/Abim.webp"
+              alt="Abim Tamang"
+              className="about-photo-img"
+              width="1087"
+              height="1446"
+              decoding="async"
+            />
             <figcaption className="about-photo-tag">
               <strong>Abim Tamang</strong>
               <span>Full-stack developer</span>
