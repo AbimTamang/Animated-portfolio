@@ -8,6 +8,16 @@
 	--ember-deep: #d9361d;
 	--site-surface: #100b0a;
 	--site-text: #f5eeea;
+
+	/* Shared scale for small UI text (labels, chips, meta) */
+	--fs-xs: 0.75rem; /* 12px: kickers, tags, captions */
+	--fs-sm: 0.875rem; /* 14px: buttons, secondary copy */
+
+	/* Shared corner radii */
+	--radius-sm: 0.5rem;
+	--radius-md: 1rem;
+	--radius-lg: 1.75rem;
+	--radius-pill: 999px;
 }
 
 html {

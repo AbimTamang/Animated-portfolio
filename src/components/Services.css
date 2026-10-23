@@ -49,7 +49,7 @@
   isolation: isolate;
   padding: 1.75rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.75rem;
+  border-radius: var(--radius-lg);
   background: linear-gradient(170deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
   cursor: pointer;
   outline: none;
@@ -60,7 +60,7 @@
 }
 
 .svc-card.is-active {
-  flex-grow: 3;
+  flex-grow: 2;
   border-color: rgba(255, 75, 46, 0.45);
   background-color: rgba(255, 75, 46, 0.06);
 }
@@ -79,7 +79,7 @@
 .svc-num {
   color: rgba(255, 255, 255, 0.35);
   font-family: ui-monospace, Consolas, monospace;
-  font-size: 0.8rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.1em;
   transition: color 0.4s ease;
 }
@@ -153,7 +153,7 @@
 .svc-body p {
   margin: 1rem 0 1.25rem;
   color: rgba(255, 255, 255, 0.7);
-  font-size: 1.02rem;
+  font-size: 1rem;
   line-height: 1.65;
 }
 
@@ -169,10 +169,10 @@
 .svc-tools li {
   padding: 0.35rem 0.85rem;
   border: 1px solid rgba(255, 75, 46, 0.35);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: rgba(255, 75, 46, 0.1);
   color: #fff;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
 }
 
 /* Soft ember glow rising from the bottom of the active card */

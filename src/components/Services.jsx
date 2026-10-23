@@ -79,6 +79,7 @@ export default function Services() {
       <div className="svc-inner">
         <SectionHeading kicker="04 — What I do" title="Things I can" accent="build for you.">
           From the first sketch to a deployed product, these are the parts of the stack I enjoy working on most.
+          Hover or tab through the cards to open each one.
         </SectionHeading>
 
         <ul className="svc-list">

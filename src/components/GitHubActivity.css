@@ -24,7 +24,7 @@
   gap: 1rem;
   padding: clamp(1.25rem, 2.2vw, 1.75rem);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.5rem;
+  border-radius: var(--radius-lg);
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012));
 }
 
@@ -38,7 +38,7 @@
 
 .gh-label {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 0.72rem;
+  font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -60,12 +60,12 @@
   overflow: hidden;
   height: 0.6rem;
   gap: 3px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
 }
 
 .gh-lang-bar span {
   height: 100%;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   transform-origin: left;
 }
 
@@ -83,7 +83,7 @@
   align-items: center;
   gap: 0.45rem;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
 }
 
 .gh-lang-list b {
@@ -112,7 +112,7 @@
   align-items: center;
   gap: 0.25rem;
   color: rgba(255, 255, 255, 0.4);
-  font-size: 0.7rem;
+  font-size: var(--fs-xs);
 }
 
 .gh-legend i {
@@ -176,7 +176,7 @@
   gap: 1rem;
   padding: 1rem 1.15rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1rem;
+  border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.02);
   color: #fff;
   text-decoration: none;
@@ -211,14 +211,14 @@
   align-items: center;
   gap: 0.4rem;
   color: rgba(255, 255, 255, 0.5);
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
 }
 
 .gh-repo-time {
   grid-column: 2;
   grid-row: 1 / span 2;
   color: rgba(255, 255, 255, 0.45);
-  font-size: 0.8rem;
+  font-size: var(--fs-sm);
 }
 
 .gh-repo-arrow {

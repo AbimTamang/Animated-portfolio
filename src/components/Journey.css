@@ -109,7 +109,7 @@
 
 .jr-when small {
   color: rgba(255, 255, 255, 0.45);
-  font-size: 0.72rem;
+  font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -130,7 +130,7 @@
   grid-row: 1;
   padding: clamp(1.4rem, 2.5vw, 2rem);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.5rem;
+  border-radius: var(--radius-lg);
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012));
   will-change: transform;
   transition: border-color 0.4s ease;
@@ -201,7 +201,7 @@
 .jr-note {
   margin: 0.25rem 0 0;
   color: rgba(255, 255, 255, 0.5);
-  font-size: 0.88rem;
+  font-size: var(--fs-sm);
 }
 
 .jr-desc {
@@ -222,9 +222,9 @@
 .jr-tags li {
   padding: 0.3rem 0.75rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
 }
 
 .jr-tags--small {
@@ -233,7 +233,7 @@
 
 .jr-tags--small li {
   padding: 0.2rem 0.6rem;
-  font-size: 0.7rem;
+  font-size: var(--fs-xs);
 }
 
 /* Final year project highlight inside the education card */
@@ -242,13 +242,13 @@
   margin-top: 1.5rem;
   padding: 1.25rem;
   border: 1px dashed rgba(255, 75, 46, 0.4);
-  border-radius: 1rem;
+  border-radius: var(--radius-md);
   background: rgba(255, 75, 46, 0.06);
 }
 
 .jr-project-label {
   color: var(--ember);
-  font-size: 0.7rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -257,7 +257,7 @@
 .jr-project p {
   margin: 0.5rem 0 1rem;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
   line-height: 1.6;
 }
 
@@ -276,10 +276,10 @@
 
 .jr-project-links a {
   padding: 0.4rem 0.9rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--ember);
   color: #fff;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 600;
   text-decoration: none;
   transition:

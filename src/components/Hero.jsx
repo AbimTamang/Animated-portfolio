@@ -2,7 +2,10 @@ import "./Hero.css";
 
 export default function Hero() {
   return (
-    <section id="home" className="hero-section">
+    <section id="home" className="hero-section" aria-labelledby="hero-title">
+      <h1 id="hero-title" className="sr-only">
+        Abim Tamang — Creative Developer
+      </h1>
       <div className="hero-marquee" aria-hidden="true">
         {[0, 1].map((copy) => (
           <div className="hero-marquee-group" key={copy}>

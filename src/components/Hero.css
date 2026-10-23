@@ -44,14 +44,15 @@
   flex: none;
   gap: 6rem;
   padding-right: 6rem;
-  color: #ff4b2e;
+  /* Faint fill + outline (like the Services/Contact backdrops) so the
+     portrait stays the focal point */
+  color: rgba(255, 75, 46, 0.12);
   font-family: "Arial Black", Impact, sans-serif;
   font-size: 19rem;
   font-weight: 900;
   line-height: 0.8;
-  text-shadow: 0 0 35px rgba(247, 67, 32, 0.16);
   white-space: nowrap;
-  opacity: 0.48;
+  -webkit-text-stroke: 2px rgba(255, 75, 46, 0.45);
 }
 
 /* Portrait stands on the bottom edge of the hero. The image always fills its

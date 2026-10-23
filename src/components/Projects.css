@@ -13,10 +13,11 @@
     #100b0a;
 }
 
-/* Opening title that the camera flies through */
+/* Opening title that the camera flies through. Sits above the framed
+   screen so it's never half-covered before the push-in hides it. */
 .cine-title {
   position: absolute;
-  z-index: 0;
+  z-index: 2;
   inset: 0;
   display: flex;
   align-items: center;
@@ -28,6 +29,7 @@
   letter-spacing: -0.05em;
   line-height: 0.9;
   text-align: center;
+  text-shadow: 0 10px 50px rgba(0, 0, 0, 0.65);
   white-space: nowrap;
   pointer-events: none;
 }
@@ -49,9 +51,15 @@
   display: flex;
   justify-content: space-between;
   color: rgba(255, 255, 255, 0.55);
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+
+/* The scroll hint is a phrase, not a label: keep it sentence case */
+.cine-intro-meta span:last-child {
+  letter-spacing: 0.04em;
+  text-transform: none;
 }
 
 /* The "screen" that grows to full viewport */
@@ -126,7 +134,7 @@
   width: min(50vw, 60rem);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 0.9rem;
+  border-radius: var(--radius-md);
   background: #161110;
   box-shadow:
     0 50px 120px -30px rgba(0, 0, 0, 0.9),
@@ -167,11 +175,11 @@
   margin: 0 auto;
   padding: 0.2rem 0.75rem;
   overflow: hidden;
-  border-radius: 0.4rem;
+  border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.55);
   font-family: ui-monospace, Consolas, monospace;
-  font-size: 0.7rem;
+  font-size: var(--fs-xs);
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -245,7 +253,7 @@
   display: block;
   margin-bottom: 0.9rem;
   color: var(--ember);
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -294,10 +302,10 @@
 .cine-tags li {
   padding: 0.3rem 0.8rem;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.05);
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
 }
 
 .cine-links {
@@ -309,9 +317,9 @@
 .cine-btn {
   padding: 0.7rem 1.4rem;
   border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: #fff;
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   font-weight: 600;
   text-decoration: none;
   transition:
@@ -347,10 +355,10 @@
   margin-bottom: 1rem;
   padding: 0.4rem 0.85rem;
   border: 1px solid rgba(255, 75, 46, 0.55);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: rgba(255, 75, 46, 0.16);
   color: #fff;
-  font-size: 0.7rem;
+  font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -431,7 +439,7 @@
   inset: 0;
   color: rgba(255, 255, 255, 0.85);
   font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.12em;
   opacity: 0;
   visibility: hidden;
@@ -578,7 +586,7 @@
   .cine-caption p,
   .cine-cut-body p {
     margin-bottom: 0.9rem;
-    font-size: 0.88rem;
+    font-size: var(--fs-sm);
   }
 
   .cine-tags {
@@ -614,12 +622,12 @@
 
   .cine-badge {
     margin-bottom: 0.6rem;
-    font-size: 0.6rem;
+    font-size: var(--fs-xs);
   }
 
   .cine-kicker {
     margin-bottom: 0.5rem;
-    font-size: 0.65rem;
+    font-size: var(--fs-xs);
   }
 
   .cine-caption h3,
@@ -639,18 +647,18 @@
 
   .cine-tags li {
     padding: 0.25rem 0.65rem;
-    font-size: 0.68rem;
+    font-size: var(--fs-xs);
   }
 
   .cine-btn {
     padding: 0.6rem 1.1rem;
-    font-size: 0.82rem;
+    font-size: var(--fs-sm);
   }
 
   .cine-intro-meta {
     right: 1rem;
     left: 1rem;
-    font-size: 0.65rem;
+    font-size: var(--fs-xs);
   }
 
   .cine-progress {

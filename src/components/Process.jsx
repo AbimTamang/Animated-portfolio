@@ -139,7 +139,12 @@ export default function Process() {
             </span>
           </h2>
           <p className="proc-mask">
-            <span className="proc-reveal">Keep scrolling →</span>
+            <span className="proc-reveal">
+              Keep scrolling · {steps.length} steps{" "}
+              <span className="proc-hint-arrow" aria-hidden="true">
+                →
+              </span>
+            </span>
           </p>
         </div>
 
